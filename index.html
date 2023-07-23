@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Medito</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="heading">
+                <a href="#" class="title-link">
+                    <h1 class="title">
+                        Medito
+                    </h1>
+                </a>
+                <nav></nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container container-main">
+            <img class="img-principale" src="./assets/images/meditation.jpg" alt="Personne méditant" />
+            <div class="timer" id="timer">
+                <input class="number-timer" id="number-timer-minutes" min="1" max="60" type="text" placeholder="00"/>
+                <span>:</span>
+                <input class="number-timer" id="number-timer-seconds" min="1" max="60" type="text" placeholder="00"/>
+            </div>
+            <button class="start-timer">Start</button>
+            <button class="pause-timer">Pause</button>
+            <div class="gong">
+                <div class="gong-switch">
+                    <div class="infoGong">
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto iste odit aperiam repellat voluptatum assumenda.
+                        </p>
+                    </div>
+                    <span class="gong-icon">
+                        <span class="material-icons">help_outline</span>Gong
+                    </span>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="btn-gong-time">
+                    <button>5 min</button>
+                    <button>15 min</button>
+                    <button>30 min</button>
+                </div>
+            </div>
+            <div class="sound-effect">
+                <p>Sound effect</p>
+                <div class="row-sound">
+                    <button>
+                        <img src="./assets/images/no-sound 64x64.png" alt="No sound" />
+                        <div>No sound</div>
+                    </button>
+                    <button>
+                        <img src="./assets/images/sunset 64x64.png" alt="Sea" />
+                        <div>Sea</div>
+                    </button>
+                    <button>
+                        <img src="./assets/images/forest 64x64.png" alt="Forest" />
+                        <div>Forest</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="javascript/script.js"></script>
+</body>
+</html>
