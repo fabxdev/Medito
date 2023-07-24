@@ -45,4 +45,5 @@ Meditapp est actuellement en version bêta, nous vous encourageons à nous faire
 **Méditez en paix avec Medito !** 🧘‍♀️🌿
 
 *Fabien PIERRARD*
+ / 
 *Kerny LAGUERRE*
