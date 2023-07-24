@@ -18,7 +18,7 @@ Meditapp est une application web de méditation simple et intuitive réalisée d
 
 ## Comment utiliser Medito
 
-1. Accédez à l'application Medito via le lien [www.###.com](https://www.#.com).
+1. Accédez à l'application Meditapp via le lien [www.###.com](https://www.#.com).
 
 2. Définissez la durée de votre séance de méditation en utilisant le timer.
 
@@ -32,16 +32,17 @@ Meditapp est une application web de méditation simple et intuitive réalisée d
 
 ## Contribution
 
-Medito est un projet open-source et nous accueillons les contributions de la communauté. Si vous souhaitez améliorer l'application, ajouter de nouvelles fonctionnalités ou corriger des bugs, n'hésitez pas à créer une pull request.
+Meditapp est un projet open-source et nous accueillons les contributions de la communauté. Si vous souhaitez améliorer l'application, ajouter de nouvelles fonctionnalités ou corriger des bugs, n'hésitez pas à créer une pull request.
 
 ## Licence
 
-Medito est sous licence [MIT](https://opensource.org/licenses/MIT). Vous êtes libre de l'utiliser, de la partager et de la modifier selon les termes de cette licence.
+Meditapp est sous licence [MIT](https://opensource.org/licenses/MIT). Vous êtes libre de l'utiliser, de la partager et de la modifier selon les termes de cette licence.
 
 ## Remarque
 
-Medito est actuellement en version bêta, nous vous encourageons à nous faire part de vos commentaires et suggestions pour nous aider à améliorer l'application.
+Meditapp est actuellement en version bêta, nous vous encourageons à nous faire part de vos commentaires et suggestions pour nous aider à améliorer l'application.
 
 **Méditez en paix avec Medito !** 🧘‍♀️🌿
 
 *Fabien PIERRARD*
+*Kerny LAGUERRE*
