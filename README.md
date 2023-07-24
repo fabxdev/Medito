@@ -1,8 +1,8 @@
-# Medito - Application Web de Méditation
+# Meditapp - Application Web de Méditation
 
-![Medito](link-to-your-logo.png)
+![Meditapp](link-to-your-logo.png)
 
-Medito est une application web de méditation simple et intuitive réalisée dans le cadre d'un stage par Fabien PIERRARD et Kerny LAGUERRE, sous la supervision de notre maître de stage, Sayah EL YATIM. Cette application vous aide à pratiquer la méditation de manière apaisante et guidée, que vous soyez débutant ou expérimenté en méditation. Medito vous offre une expérience de méditation personnalisable pour vous aider à vous détendre, à vous concentrer et à trouver la paix intérieure.
+Meditapp est une application web de méditation simple et intuitive réalisée dans le cadre d'un stage par Fabien PIERRARD et Kerny LAGUERRE, sous la supervision de notre maître de stage, Sayah EL YATIM. Cette application vous aide à pratiquer la méditation de manière apaisante et guidée, que vous soyez débutant ou expérimenté en méditation. Medito vous offre une expérience de méditation personnalisable pour vous aider à vous détendre, à vous concentrer et à trouver la paix intérieure.
 
 ## Fonctionnalités principales
 
