@@ -6,6 +6,10 @@ let btnPause = document.querySelector('.pause-timer')
 let t = null
 let minutesInput = document.querySelector('#number-timer-minutes')
 let secondesInput = document.querySelector('#number-timer-seconds')
+let selectedSound = null;
+
+const soundSea = new Audio('./assets/sons/sea.mp3');
+const soundForest = new Audio('./assets/sons/forest.mp3');
 
 function convertCurrentTime(response, inputMinutes, inputSecondes) {
     const minutes = Math.floor(response.lastTime / 60) // 600 sec -> 10 min -> 10 : 00
@@ -14,32 +18,65 @@ function convertCurrentTime(response, inputMinutes, inputSecondes) {
     inputSecondes.value = secondes.toString().padStart(2, 0)
 }
 
-
 fetch("/database/data.json").then(res => res.json()).then((r) => {
     response = r
     convertCurrentTime(response, minutesInput, secondesInput)
 })
 
-btnPause.addEventListener('click', () => {
-    btnPause.style.display = 'none'
-    btnStart.style.display = 'block'
-    clearInterval(t)
+// update
+soundSea.addEventListener('ended', () => {
+    if (response.lastTime > 1) {
+        soundSea.currentTime = 0
+        soundSea.play()
+    }
 })
+
+// update
+soundForest.addEventListener('ended', () => {
+    if (response.lastTime > 3) {
+        soundSea.currentTime = 0
+        soundSea.play()
+    }
+})
+
+btnPause.addEventListener('click', () => {
+    btnPause.style.display = 'none';
+    btnStart.style.display = 'block';
+    clearInterval(t);
+    soundSea.pause();
+    soundForest.pause();
+});
 
 btnStart.addEventListener('click', () => {
-    btnPause.style.display = 'block'
-    btnStart.style.display = 'none'
-    t = setInterval(() => {
-        console.log(--response.lastTime)
-        convertCurrentTime(response, minutesInput, secondesInput)
-        if (response.lastTime <= 0) {
-            clearInterval(t)
-            btnPause.style.display = 'none'
-            btnStart.style.display = 'block'
-        }
-    }, 1000)
-})
+    btnPause.style.display = 'block';
+    btnStart.style.display = 'none';
 
+    t = setInterval(() => {
+        console.log(--response.lastTime);
+        convertCurrentTime(response, minutesInput, secondesInput);
+        if (response.lastTime <= 0) {
+            clearInterval(t);
+            btnPause.style.display = 'none';
+            btnStart.style.display = 'block';
+            // update
+            if (soundSea.paused === false) {
+                soundSea.paused()
+                soundSea.currentTime = 0
+            }
+            // update
+            if (soundForest.paused === false) {
+                soundSea.paused()
+                soundSea.currentTime = 0
+            }
+        }
+
+        if (selectedSound === 'sea') {
+            soundSea.play();
+        } else if (selectedSound === 'forest') {
+            soundForest.play(); 
+        }
+    }, 1000);
+});
 
 gongHelp.addEventListener('mouseenter', (e) => {
         infoGong.style.display = 'block';
@@ -125,3 +162,18 @@ minutesInput.addEventListener('input', (event) => {
 
     console.log(v + " est un nombre entre 0 et 60")
 })
+
+const soundButtons = document.querySelectorAll('.row-sound button');
+soundButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Récupérer le son sélectionné
+        selectedSound = button.dataset.sound;
+
+        soundButtons.forEach(btn => btn.classList.remove('button-active'));
+        button.classList.add('button-active');
+        
+        // Arrêter la lecture des autres sons
+        soundSea.pause();
+        soundForest.pause();
+    });
+});

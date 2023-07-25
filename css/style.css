@@ -253,3 +253,8 @@ main {
   .row-sound img {
     width: 45px;
   }
+
+  .button-active {
+    background-color: #00a2ff; 
+    color: white;
+  }
