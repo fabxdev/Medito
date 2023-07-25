@@ -18,10 +18,25 @@ function convertCurrentTime(response, inputMinutes, inputSecondes) {
     inputSecondes.value = secondes.toString().padStart(2, 0)
 }
 
-
 fetch("/database/data.json").then(res => res.json()).then((r) => {
     response = r
     convertCurrentTime(response, minutesInput, secondesInput)
+})
+
+// update
+soundSea.addEventListener('ended', () => {
+    if (response.lastTime > 1) {
+        soundSea.currentTime = 0
+        soundSea.play()
+    }
+})
+
+// update
+soundForest.addEventListener('ended', () => {
+    if (response.lastTime > 3) {
+        soundSea.currentTime = 0
+        soundSea.play()
+    }
 })
 
 btnPause.addEventListener('click', () => {
@@ -43,6 +58,16 @@ btnStart.addEventListener('click', () => {
             clearInterval(t);
             btnPause.style.display = 'none';
             btnStart.style.display = 'block';
+            // update
+            if (soundSea.paused === false) {
+                soundSea.paused()
+                soundSea.currentTime = 0
+            }
+            // update
+            if (soundForest.paused === false) {
+                soundSea.paused()
+                soundSea.currentTime = 0
+            }
         }
 
         if (selectedSound === 'sea') {
