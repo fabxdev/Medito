@@ -10,6 +10,7 @@ let selectedSound = null;
 
 const soundSea = new Audio('./assets/sons/sea.mp3');
 const soundForest = new Audio('./assets/sons/forest.mp3');
+const soundGong = new Audio('./assets/sons/gong.mp3');
 
 function convertCurrentTime(response, inputMinutes, inputSecondes) {
     const minutes = Math.floor(response.lastTime / 60) // 600 sec -> 10 min -> 10 : 00
@@ -58,6 +59,9 @@ btnStart.addEventListener('click', () => {
             clearInterval(t);
             btnPause.style.display = 'none';
             btnStart.style.display = 'block';
+
+            soundGong.play();
+            
             // update
             if (soundSea.paused === false) {
                 soundSea.paused()
