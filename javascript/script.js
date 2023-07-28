@@ -18,15 +18,6 @@ const soundForest = new Audio('./assets/sons/forest.mp3');
 const soundGong = new Audio('./assets/sons/gong.mp3');
 
 
-function soundGoungFunc() {
-    soundGong.play();
-    const t = setTimeout(() => {
-        soundGong.pause();
-        soundGong.currentTime = 0;
-        clearTimeout(t)
-    }, 10000)
-}
-
 function convertCurrentTime(response, inputMinutes, inputSecondes) {
     const minutes = Math.floor(response.lastTime / 60) // 600 sec -> 10 min -> 10 : 00
     const secondes = response.lastTime - minutes * 60;
@@ -77,7 +68,7 @@ btnStart.addEventListener('click', () => {
         }
 
         if (gongIsEnable && timeGongButton === 0 && response.lastTime > (timeGongButton - 5)) {
-            soundGoungFunc();
+            soundGong.play();
             timeGongButton = selectedGongButton;
             console.log('sounded')
         }
