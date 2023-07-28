@@ -7,10 +7,16 @@ let t = null
 let minutesInput = document.querySelector('#number-timer-minutes')
 let secondesInput = document.querySelector('#number-timer-seconds')
 let selectedSound = null;
+let selectedGongButton = 15;
+let timeGongButton = selectedGongButton;
+let gongCheckbox = document.querySelector('#gong-check')
+gongCheckbox.checked = false
+let gongIsEnable = false;
 
 const soundSea = new Audio('./assets/sons/sea.mp3');
 const soundForest = new Audio('./assets/sons/forest.mp3');
 const soundGong = new Audio('./assets/sons/gong.mp3');
+
 
 function convertCurrentTime(response, inputMinutes, inputSecondes) {
     const minutes = Math.floor(response.lastTime / 60) // 600 sec -> 10 min -> 10 : 00
@@ -22,22 +28,6 @@ function convertCurrentTime(response, inputMinutes, inputSecondes) {
 fetch("/database/data.json").then(res => res.json()).then((r) => {
     response = r
     convertCurrentTime(response, minutesInput, secondesInput)
-})
-
-// update
-soundSea.addEventListener('ended', () => {
-    if (response.lastTime > 1) {
-        soundSea.currentTime = 0
-        soundSea.play()
-    }
-})
-
-// update
-soundForest.addEventListener('ended', () => {
-    if (response.lastTime > 3) {
-        soundSea.currentTime = 0
-        soundSea.play()
-    }
 })
 
 btnPause.addEventListener('click', () => {
@@ -52,9 +42,15 @@ btnStart.addEventListener('click', () => {
     btnPause.style.display = 'block';
     btnStart.style.display = 'none';
 
+    soundGong.play()
+
     t = setInterval(() => {
         console.log(--response.lastTime);
+        if (gongIsEnable) {
+            console.log(--timeGongButton);
+        }
         convertCurrentTime(response, minutesInput, secondesInput);
+
         if (response.lastTime <= 0) {
             clearInterval(t);
             btnPause.style.display = 'none';
@@ -62,24 +58,32 @@ btnStart.addEventListener('click', () => {
 
             soundGong.play();
             
-            // update
-            if (soundSea.paused === false) {
-                soundSea.paused()
-                soundSea.currentTime = 0
-            }
-            // update
-            if (soundForest.paused === false) {
-                soundSea.paused()
-                soundSea.currentTime = 0
-            }
+            soundSea.pause()
+            console.log(soundSea)
+
+            soundForest.pause()
+            console.log(soundForest)
+
+            selectedSound = 'no-sound'
+        }
+
+        if (gongIsEnable && timeGongButton === 0 && response.lastTime > (timeGongButton - 5)) {
+            soundGong.play();
+            timeGongButton = selectedGongButton;
+            console.log('sounded')
         }
 
         if (selectedSound === 'sea') {
             soundSea.play();
         } else if (selectedSound === 'forest') {
-            soundForest.play(); 
+            soundForest.play();
+        } else {
+            soundSea.pause();
+            soundForest.pause();
         }
+
     }, 1000);
+
 });
 
 gongHelp.addEventListener('mouseenter', (e) => {
@@ -173,11 +177,44 @@ soundButtons.forEach(button => {
         // Récupérer le son sélectionné
         selectedSound = button.dataset.sound;
 
-        soundButtons.forEach(btn => btn.classList.remove('button-active'));
+        soundButtons.forEach(btn => {
+            btn.classList.remove('button-active')
+            const underline = btn.querySelector('.underline');
+            underline.style.transform = 'scaleX(0)'
+        });
         button.classList.add('button-active');
         
         // Arrêter la lecture des autres sons
         soundSea.pause();
         soundForest.pause();
+
+        const underline = button.querySelector('.underline');
+        underline.style.transform = "scaleX(1)";
+
+        selectedSound = button.dataset.sound;
     });
 });
+
+const gongButtonsTiming = document.querySelectorAll('.btn-gong-time > button')
+gongButtonsTiming.forEach(b => {
+
+    b.addEventListener('click', () => {
+        selectedGongButton = parseInt(b.dataset.time);
+        timeGongButton = selectedGongButton
+        console.log(selectedGongButton);
+
+        gongButtonsTiming.forEach(b => {
+            b.classList.remove('button-active-gong')
+            let underline = b.querySelector('.underline-gong');
+            underline.style.transform = 'scaleX(0)'
+        })
+
+        b.classList.add('button-active-gong')
+        let underline = b.querySelector('.underline-gong');
+        underline.style.transform = 'scaleX(1)'
+    })
+})
+
+gongCheckbox.addEventListener('change', (e) => {
+    gongIsEnable = e.currentTarget.checked
+})

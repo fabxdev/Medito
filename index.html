@@ -41,30 +41,42 @@
                         <span class="material-icons">help_outline</span>Gong
                     </span>
                     <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="gong-check">
                         <span class="slider round"></span>
                     </label>
                 </div>
                 <div class="btn-gong-time">
-                    <button>5 min</button>
-                    <button>15 min</button>
-                    <button>30 min</button>
+                    <button data-time="300" class="button-active-gong">
+                        <div>5 min</div>
+                        <div class="underline-gong"></div>
+                    </button>
+                    <button data-time="900" class="button-active-gong">
+                        <div>15 min</div>
+                        <div class="underline-gong"></div>
+                    </button>
+                    <button data-time="1800" class="button-active-gong">
+                        <div>30 min</div>
+                        <div class="underline-gong"></div>
+                    </button>
                 </div>
             </div>
             <div class="sound-effect">
                 <p>Sound effect</p>
                 <div class="row-sound">
-                    <button data-sound="no-sound">
+                    <button class="button-active" data-sound="no-sound">
                         <img src="./assets/images/no-sound 64x64.png" alt="No sound" />
                         <div>No sound</div>
+                        <div class="underline"></div>
                     </button>
-                    <button data-sound="sea">
+                    <button class="button-active" data-sound="sea">
                         <img src="./assets/images/sunset 64x64.png" alt="Sea" />
                         <div>Sea</div>
+                        <div class="underline"></div>
                     </button>
-                    <button data-sound="forest">
+                    <button class="button-active" data-sound="forest">
                         <img src="./assets/images/forest 64x64.png" alt="Forest" />
                         <div>Forest</div>
+                        <div class="underline"></div>
                     </button>
                 </div>
             </div>
