@@ -24,22 +24,6 @@ fetch("/database/data.json").then(res => res.json()).then((r) => {
     convertCurrentTime(response, minutesInput, secondesInput)
 })
 
-// update
-soundSea.addEventListener('ended', () => {
-    if (response.lastTime > 1) {
-        soundSea.currentTime = 0
-        soundSea.play()
-    }
-})
-
-// update
-soundForest.addEventListener('ended', () => {
-    if (response.lastTime > 3) {
-        soundSea.currentTime = 0
-        soundSea.play()
-    }
-})
-
 btnPause.addEventListener('click', () => {
     btnPause.style.display = 'none';
     btnStart.style.display = 'block';
@@ -55,6 +39,7 @@ btnStart.addEventListener('click', () => {
     t = setInterval(() => {
         console.log(--response.lastTime);
         convertCurrentTime(response, minutesInput, secondesInput);
+
         if (response.lastTime <= 0) {
             clearInterval(t);
             btnPause.style.display = 'none';
@@ -62,24 +47,26 @@ btnStart.addEventListener('click', () => {
 
             soundGong.play();
             
-            // update
-            if (soundSea.paused === false) {
-                soundSea.paused()
-                soundSea.currentTime = 0
-            }
-            // update
-            if (soundForest.paused === false) {
-                soundSea.paused()
-                soundSea.currentTime = 0
-            }
+            soundSea.pause()
+            console.log(soundSea)
+
+            soundForest.pause()
+            console.log(soundForest)
+
+            selectedSound = 'no-sound'
         }
 
         if (selectedSound === 'sea') {
             soundSea.play();
         } else if (selectedSound === 'forest') {
-            soundForest.play(); 
+            soundForest.play();
+        } else {
+            soundSea.pause();
+            soundForest.pause();
         }
+
     }, 1000);
+
 });
 
 gongHelp.addEventListener('mouseenter', (e) => {
